@@ -1,0 +1,124 @@
+/* Design Tokens for Cafe/Restaurant Demo */
+
+/* === Color Palette === */
+:root {
+  /* Background */
+  --color-bg-cream: #FBF8F3;
+  --color-bg-white: #FFFFFF;
+  --color-bg-warm-gray: #F5F3F0;
+
+  /* Primary text */
+  --color-text-espresso: #2A1E17;
+  --color-text-dark: #3D2E26;
+
+  /* Secondary text */
+  --color-text-muted: #6E6A5F;
+  --color-text-light: #9A958A;
+
+  /* Accent - Olive Green */
+  --color-accent-olive: #5C7A5C;
+  --color-accent-olive-dark: #4A624A;
+  --color-accent-olive-light: #7A9A7A;
+
+  /* Accent - Terracotta */
+  --color-accent-terracotta: #C96B4A;
+  --color-accent-terracotta-dark: #A85538;
+  --color-accent-terracotta-light: #E08A6D;
+
+  /* Borders */
+  --color-border: #E5E2DD;
+  --color-border-dark: #D4D0C9;
+
+  /* Focus */
+  --color-focus-ring: #5C7A5C;
+}
+
+/* === Spacing Scale === */
+:root {
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+}
+
+/* === Typography === */
+:root {
+  /* Font families */
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Font sizes */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.875rem;  /* 30px */
+  --text-4xl: 2.25rem;   /* 36px */
+  --text-5xl: 3rem;      /* 48px */
+  --text-6xl: 3.75rem;   /* 60px */
+
+  /* Line heights */
+  --leading-tight: 1.2;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+
+  /* Letter spacing */
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+}
+
+/* === Border Radius === */
+:root {
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+}
+
+/* === Shadows === */
+:root {
+  --shadow-sm: 0 1px 2px 0 rgba(42, 30, 23, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(42, 30, 23, 0.1), 0 2px 4px -1px rgba(42, 30, 23, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(42, 30, 23, 0.1), 0 4px 6px -2px rgba(42, 30, 23, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(42, 30, 23, 0.1), 0 10px 10px -5px rgba(42, 30, 23, 0.04);
+}
+
+/* === Transitions === */
+:root {
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+}
+
+/* === Container Widths === */
+:root {
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1200px;
+  --container-max: 1400px;
+}
+
+/* === Z-Index Scale === */
+:root {
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+}

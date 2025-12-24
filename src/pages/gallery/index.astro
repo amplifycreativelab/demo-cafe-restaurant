@@ -1,0 +1,196 @@
+---
+import Layout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import { Image } from "astro:assets";
+import dish1 from "../../assets/images/dish-1.png";
+import dish2 from "../../assets/images/dish-2.png";
+import dish3 from "../../assets/images/dish-3.png";
+import venueInterior from "../../assets/images/venue-interior.png";
+import chefTeam from "../../assets/images/chef-team.png";
+import heroBg from "../../assets/images/hero-bg.png";
+import site from "../../data/site.json";
+---
+
+<Layout
+  title="Gallery | The Olive Branch"
+  description="Browse our gallery of food, venue, and atmosphere at The Olive Branch in Perth."
+>
+  <Fragment slot="header">
+    <Header />
+  </Fragment>
+
+  <section class="gallery-page">
+    <div class="container gallery-page__inner">
+      <SectionHeader
+        title="Our Gallery"
+        subtitle="A glimpse into our food, venue, and warm atmosphere"
+        centered
+      />
+
+      <div class="gallery-page__grid">
+        <div class="gallery-page__item gallery-page__item--large">
+          <Image
+            src={dish1}
+            alt="Signature avocado dish"
+            class="gallery-page__image"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div class="gallery-page__item">
+          <Image
+            src={venueInterior}
+            alt="Our cozy venue interior"
+            class="gallery-page__image"
+            width={400}
+            height={400}
+          />
+        </div>
+
+        <div class="gallery-page__item">
+          <Image
+            src={dish2}
+            alt="Fresh seafood dish"
+            class="gallery-page__image"
+            width={400}
+            height={400}
+          />
+        </div>
+
+        <div class="gallery-page__item">
+          <Image
+            src={dish3}
+            alt="Artisan coffee"
+            class="gallery-page__image"
+            width={400}
+            height={400}
+          />
+        </div>
+
+        <div class="gallery-page__item gallery-page__item--wide">
+          <Image
+            src={chefTeam}
+            alt="Our chef team in action"
+            class="gallery-page__image"
+            width={800}
+            height={400}
+          />
+        </div>
+
+        <div class="gallery-page__item">
+          <Image
+            src={heroBg}
+            alt="Restaurant atmosphere"
+            class="gallery-page__image"
+            width={400}
+            height={400}
+          />
+        </div>
+      </div>
+
+      <div class="gallery-page__cta">
+        <a
+          href={site.booking.url}
+          class="gallery-page__btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Book a table to see it in person
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</Layout>
+
+<style>
+  .gallery-page {
+    padding: var(--spacing-16) 0;
+  }
+
+  .gallery-page__inner {
+    max-width: var(--container-xl);
+  }
+
+  .gallery-page__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-12);
+  }
+
+  .gallery-page__item {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background-color: var(--color-bg-white);
+    border: 1px solid var(--color-border);
+  }
+
+  .gallery-page__item--large {
+    grid-row: span 2;
+  }
+
+  .gallery-page__item--wide {
+    grid-column: span 2;
+  }
+
+  .gallery-page__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-base);
+  }
+
+  .gallery-page__item:hover .gallery-page__image {
+    transform: scale(1.05);
+  }
+
+  .gallery-page__cta {
+    text-align: center;
+  }
+
+  .gallery-page__btn {
+    display: inline-block;
+    background-color: var(--color-accent-olive);
+    color: var(--color-bg-cream);
+    padding: var(--spacing-4) var(--spacing-8);
+    font-size: var(--text-lg);
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .gallery-page__btn:hover {
+    background-color: var(--color-accent-olive-dark);
+    transform: translateY(-2px);
+  }
+
+  .gallery-page__btn:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+
+  @media (min-width: 640px) {
+    .gallery-page__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery-page__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gallery-page__item--wide {
+      grid-column: span 2;
+    }
+  }
+</style>

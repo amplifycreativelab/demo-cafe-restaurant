@@ -1,0 +1,174 @@
+---
+import '../styles/global.css';
+import site from '../data/site.json';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: string;
+  canonical?: string;
+  noIndex?: boolean;
+  schema?: boolean;
+}
+
+const {
+  title = 'The Olive Branch | Seasonal flavours, warm hospitality',
+  description = 'Experience modern Australian cuisine with Mediterranean influences in the heart of Perth. Fresh ingredients, warm atmosphere, and exceptional hospitality.',
+  image = 'og-image.png',
+  type = 'website',
+  canonical,
+  noIndex = false,
+  schema = true,
+} = Astro.props;
+
+const basePath = import.meta.env.BASE_URL;
+
+const toBasePath = (path: string) => {
+  if (!path) return path;
+  if (/^https?:\/\//.test(path)) return path;
+  if (path.startsWith(basePath)) return path;
+  return `${basePath}${path.replace(/^\//, '')}`;
+};
+
+const siteOrigin = Astro.site ? new URL(Astro.site) : new URL('http://localhost:4321');
+const siteHome = new URL(basePath, siteOrigin).href;
+
+const canonicalPath = canonical ? toBasePath(canonical) : Astro.url.pathname;
+const fullCanonical = /^https?:\/\//.test(canonicalPath)
+  ? canonicalPath
+  : new URL(canonicalPath, siteOrigin).href;
+
+const imagePath = toBasePath(image);
+const fullImage = /^https?:\/\//.test(imagePath) ? imagePath : new URL(imagePath, siteOrigin).href;
+---
+
+<!DOCTYPE html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <link rel="icon" type="image/svg+xml" href={`${basePath}favicon.svg`} />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <link rel="canonical" href={fullCanonical} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImage} />
+    <meta property="og:url" content={fullCanonical} />
+    <meta property="og:site_name" content="The Olive Branch" />
+    <meta property="og:locale" content="en_AU" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullImage} />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- JSON-LD Schema -->
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": site.name,
+        "image": fullImage,
+        "description": site.tagline,
+        "servesCuisine": site.cuisine,
+        "telephone": site.phone,
+        "email": site.email,
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": site.address.street,
+          "addressLocality": site.address.suburb,
+          "addressRegion": site.address.state,
+          "postalCode": site.address.postcode,
+          "addressCountry": site.address.country
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday"],
+            "opens": site.hours.monday.open,
+            "closes": site.hours.monday.close
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Thursday"],
+            "opens": site.hours.thursday.open,
+            "closes": site.hours.thursday.close
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Friday"],
+            "opens": site.hours.friday.open,
+            "closes": site.hours.friday.close
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday"],
+            "opens": site.hours.saturday.open,
+            "closes": site.hours.saturday.close
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Sunday"],
+            "opens": site.hours.sunday.open,
+            "closes": site.hours.sunday.close
+          }
+        ],
+        "priceRange": "$$",
+        "url": siteHome,
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": site.rating.value,
+          "reviewCount": site.rating.count
+        }
+      })}>
+      </script>
+    )}
+    
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header>
+      <slot name="header" />
+    </header>
+    
+    <main id="main-content">
+      <slot />
+    </main>
+    
+    <footer>
+      <slot name="footer" />
+    </footer>
+    
+    <slot name="scripts" />
+  </body>
+</html>
+
+<style is:global>
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main {
+    flex: 1;
+  }
+</style>

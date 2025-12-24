@@ -1,0 +1,321 @@
+---
+import Layout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import { Image } from "astro:assets";
+import venueInterior from "../assets/images/venue-interior.png";
+import chefTeam from "../assets/images/chef-team.png";
+import site from "../data/site.json";
+import reviews from "../data/reviews.json";
+---
+
+<Layout
+  title="About Us | The Olive Branch"
+  description="Learn about The Olive Branch - our story, values, and passion for ${site.cuisine} in Perth."
+>
+  <Fragment slot="header">
+    <Header />
+  </Fragment>
+
+  <section class="about-page">
+    <div class="container about-page__inner">
+      <SectionHeader
+        title="Our Story"
+        subtitle="Where passion for food meets warm hospitality"
+        centered
+      />
+
+      <div class="about-page__story">
+        <div class="about-page__story-image">
+          <Image
+            src={venueInterior}
+            alt="Interior of The Olive Branch"
+            class="about-page__image"
+            width={800}
+            height={500}
+          />
+        </div>
+        <div class="about-page__story-content">
+          <p class="about-page__text">
+            Welcome to The Olive Branch, where we believe great food starts with
+            great ingredients and ends with great company. Located in the heart
+            of Perth, we've been serving our community with passion and
+            dedication since opening our doors.
+          </p>
+          <p class="about-page__text">
+            Our philosophy is simple: source the freshest local ingredients,
+            treat them with respect, and serve them in a warm, welcoming
+            atmosphere. Every dish that leaves our kitchen tells a story of
+            Western Australian produce and the hands that prepared it.
+          </p>
+          <p class="about-page__text">
+            We're more than just a cafe and restaurant – we're a gathering place
+            for friends, families, and colleagues. Whether you're joining us for
+            a quick morning coffee, a leisurely weekend brunch, or a special
+            dinner celebration, you're part of our story.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-page__values">
+        <h2 class="about-page__section-title">Our Values</h2>
+        <div class="about-page__values-grid">
+          <div class="about-page__value">
+            <div class="about-page__value-icon">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79.36l2.16-2.16c.71.37 1.39.92 2.94 1.63 4.28l-2.16 2.16c.58.14 1.17.24 1.79.24h2c4.08 0 7.44-3.05 7.93-7zM12 4c4.08 0 7.44 3.05 7.93 7h-2c-.62 0-1.21-.08-1.79-.23l-2.16 2.16c.71-1.39.92-2.94 1.63-4.28l2.16-2.16C17.21 4.08 16.62 4 16 4h-2c-4.08 0-7.44 3.05-7.93 7z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="about-page__value-title">Fresh & Local</h3>
+            <p class="about-page__value-text">
+              We partner with local farmers and producers to bring you the
+              freshest ingredients Western Australia has to offer.
+            </p>
+          </div>
+
+          <div class="about-page__value">
+            <div class="about-page__value-icon">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5c0 1.74.5 3.32 1.36 4.59L2 22l5-5c1.27.86 2.85 1.36 4.59 1.36 3.31 0 6-2.69 6-6 0-1.66-.59-3.16-1.54-4.34l.52-.52c.85 1.05 1.92 1.9 3.14 2.36 2.54.89 4.34 3.35 4.34 6 0 3.87-3.13 7-7 7-2.05 0-3.86-1.1-5.3-2.75l1.52-1.52c.9 1.19 2.33 2.13 4.03 2.63 2.72-.73 4.75-2.37 4.75-5.36 0-2.76-2.24-5-5-5h-2c0 2.76 2.24 5 5 5 2.99 0 5.63-1.63 6.37-4.03l1.63 1.63c-1.22 2.79-4.01 4.75-7.25 4.75-4.42 0-8-3.58-8-8 0-4.42 3.58-8 8 4.42 0 8 3.58 8 8z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="about-page__value-title">Sustainable</h3>
+            <p class="about-page__value-text">
+              We're committed to sustainable practices, minimising waste, and
+              making choices that are good for our planet.
+            </p>
+          </div>
+
+          <div class="about-page__value">
+            <div class="about-page__value-icon">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5c0 1.74.5 3.32 1.36 4.59L2 22l5-5c1.27.86 2.85 1.36 4.59 1.36 3.31 0 6-2.69 6-6 0-1.66-.59-3.16-1.54-4.34l.52-.52c.85 1.05 1.92 1.9 3.14 2.36 2.54.89 4.34 3.35 4.34 6 0 3.87-3.13 7-7 7-2.05 0-3.86-1.1-5.3-2.75l1.52-1.52c.9 1.19 2.33 2.13 4.03 2.63 2.72-.73 4.75-2.37 4.75-5.36 0-2.76-2.24-5-5-5h-2c0 2.76 2.24 5 5 5 2.99 0 5.63-1.63 6.37-4.03l1.63 1.63c-1.22 2.79-4.01 4.75-7.25 4.75-4.42 0-8-3.58-8-8 0-4.42 3.58-8 8 4.42 0 8 3.58 8 8z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="about-page__value-title">Community</h3>
+            <p class="about-page__value-text">
+              We're proud to be part of Perth's vibrant food scene and love
+              supporting our local community.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-page__team">
+        <h2 class="about-page__section-title">Meet the Team</h2>
+        <div class="about-page__team-content">
+          <div class="about-page__team-info">
+            <p class="about-page__text">
+              Behind every great meal is a passionate team. Our kitchen is led
+              by chefs who bring years of experience and a genuine love for what
+              they do. Our front-of-house team is dedicated to making every
+              guest feel welcome and valued.
+            </p>
+            <p class="about-page__text">
+              We're a family, and we treat every guest like family. That means
+              listening to your needs, accommodating dietary requirements with
+              care, and going the extra mile to make your visit special.
+            </p>
+          </div>
+          <div class="about-page__team-image">
+            <Image
+              src={chefTeam}
+              alt="Our chef plating a dish"
+              class="about-page__image"
+              width={800}
+              height={500}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="about-page__reviews">
+        <h2 class="about-page__section-title">What People Say</h2>
+        <div class="about-page__reviews-grid">
+          {
+            reviews.reviews
+              .slice(0, 3)
+              .map((review) => (
+                <TestimonialCard
+                  name={review.name}
+                  text={review.text}
+                  rating={review.rating}
+                  date={review.date}
+                  verified={review.verified}
+                />
+              ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</Layout>
+
+<style>
+  .about-page {
+    padding: var(--spacing-16) 0;
+  }
+
+  .about-page__inner {
+    max-width: var(--container-lg);
+  }
+
+  .about-page__story {
+    margin: 0 auto var(--spacing-16);
+    display: grid;
+    gap: var(--spacing-8);
+  }
+
+  .about-page__story-image,
+  .about-page__team-image {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .about-page__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-page__story-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .about-page__text {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .about-page__section-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--spacing-6);
+    text-align: center;
+    color: var(--color-text-espresso);
+  }
+
+  .about-page__values-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+    margin-bottom: var(--spacing-12);
+  }
+
+  .about-page__value {
+    background-color: var(--color-bg-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-6);
+    text-align: center;
+    border: 1px solid var(--color-border);
+  }
+
+  .about-page__value-icon {
+    width: 64px;
+    height: 64px;
+    background-color: var(--color-bg-warm-gray);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-4);
+    color: var(--color-accent-olive);
+  }
+
+  .about-page__value-title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--spacing-3);
+    color: var(--color-text-espresso);
+  }
+
+  .about-page__value-text {
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: var(--leading-relaxed);
+  }
+
+  .about-page__team {
+    margin: 0 auto var(--spacing-12);
+  }
+
+  .about-page__team-content {
+    display: grid;
+    gap: var(--spacing-8);
+  }
+
+  .about-page__reviews {
+    margin-top: var(--spacing-12);
+  }
+
+  .about-page__reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+
+  @media (min-width: 640px) {
+    .about-page__values-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .about-page__story {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+    .about-page__story-image {
+      order: 2;
+    }
+
+    .about-page__team-content {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+    .about-page__section-title {
+      font-size: var(--text-4xl);
+    }
+
+    .about-page__reviews-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,102 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  primaryText: string;
+  primaryHref: string;
+  secondaryText?: string;
+  secondaryHref?: string;
+  centered?: boolean;
+}
+
+const {
+  title,
+  description,
+  primaryText,
+  primaryHref,
+  secondaryText,
+  secondaryHref,
+  centered = true,
+} = Astro.props;
+---
+
+<section class="cta-section">
+  <div class="container cta-section__inner">
+    <div class={`cta-section__content ${centered ? 'cta-section__content--centered' : ''}`}>
+      <h2 class="cta-section__title">{title}</h2>
+      {description && <p class="cta-section__description">{description}</p>}
+      <div class="cta-section__actions">
+        <Button href={primaryHref} variant="primary" size="lg">
+          {primaryText}
+        </Button>
+        {secondaryText && secondaryHref && (
+          <Button href={secondaryHref} variant="secondary" size="lg">
+            {secondaryText}
+          </Button>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    background-color: var(--color-bg-warm-gray);
+    padding: var(--spacing-16) 0;
+  }
+
+  .cta-section__inner {
+    max-width: var(--container-lg);
+  }
+
+  .cta-section__content {
+    max-width: 600px;
+  }
+
+  .cta-section__content--centered {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .cta-section__title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--spacing-4);
+    color: var(--color-text-espresso);
+  }
+
+  .cta-section__description {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-6);
+    line-height: var(--leading-relaxed);
+  }
+
+  .cta-section__actions {
+    display: flex;
+    gap: var(--spacing-4);
+    flex-wrap: wrap;
+  }
+
+  .cta-section__content--centered .cta-section__actions {
+    justify-content: center;
+  }
+
+  @media (max-width: 640px) {
+    .cta-section__actions {
+      flex-direction: column;
+    }
+
+    .cta-section__actions .btn {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .cta-section__title {
+      font-size: var(--text-4xl);
+    }
+  }
+</style>

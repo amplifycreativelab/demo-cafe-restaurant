@@ -1,0 +1,465 @@
+---
+import Layout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Button from "../components/Button.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import MenuItemCard from "../components/MenuItemCard.astro";
+import HoursAndLocation from "../components/HoursAndLocation.astro";
+import CTASection from "../components/CTASection.astro";
+import { Image } from "astro:assets";
+import heroBg from "../assets/images/hero-bg.png";
+import dish1 from "../assets/images/dish-1.png";
+import dishChickenSalad from "../assets/images/dish-chicken-salad.png";
+import dishLamb from "../assets/images/dish-lamb.png";
+// Using placeholders for now until all images are generated
+import venueInterior from "../assets/images/venue-interior.png";
+import site from "../data/site.json";
+import menu from "../data/menu.json";
+import reviews from "../data/reviews.json";
+
+const featuredItems = menu.categories
+  .flatMap((cat) => cat.items.filter((item) => item.featured).slice(0, 1))
+  .slice(0, 3);
+
+const previewItems = menu.categories.slice(0, 3).map((cat) => ({
+  name: cat.name,
+  items: cat.items.slice(0, 2),
+}));
+
+const { rating, areasServed } = site;
+const basePath = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title={`${site.name} | ${site.tagline}`}
+  description={`Experience ${site.cuisine} in Perth. ${site.tagline}. Book a table or view our menu today.`}
+>
+  <Fragment slot="header">
+    <Header />
+  </Fragment>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero__background">
+      <Image
+        src={heroBg}
+        alt="Interior of The Olive Branch"
+        class="hero__image"
+        width={1920}
+        height={1080}
+        loading="eager"
+      />
+      <div class="hero__overlay"></div>
+    </div>
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <h1 class="hero__title">{site.name}</h1>
+        <p class="hero__tagline">{site.tagline}</p>
+        <div class="hero__actions">
+          <Button href={site.booking.url} variant="primary" size="lg" external>
+            Book a table
+          </Button>
+          <Button
+            href={`${basePath}menu/`}
+            variant="secondary"
+            size="lg"
+            class="hero__button--secondary"
+          >
+            View menu
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof -->
+  <section class="social-proof">
+    <div class="container social-proof__inner">
+      <div class="social-proof__rating">
+        <div class="social-proof__stars">
+          {
+            Array.from({ length: 5 }).map(() => (
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="social-proof__star"
+                aria-hidden="true"
+              >
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+            ))
+          }
+        </div>
+        <div class="social-proof__rating-text">
+          <span class="social-proof__rating-value">{rating}</span>
+          <span class="social-proof__rating-count"
+            >({rating.count} reviews)</span
+          >
+        </div>
+      </div>
+      <div class="social-proof__reviews">
+        {
+          reviews.reviews
+            .slice(0, 3)
+            .map((review) => (
+              <TestimonialCard
+                name={review.name}
+                text={review.text}
+                rating={review.rating}
+                date={review.date}
+                verified={review.verified}
+              />
+            ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Today's Highlights -->
+  <section class="highlights">
+    <div class="container highlights__inner">
+      <SectionHeader
+        title="Today's Highlights"
+        subtitle="Signature dishes crafted with love and the freshest ingredients"
+        centered
+      />
+      <div class="highlights__grid">
+        {
+          featuredItems.map((item, index) => (
+            <div class="highlights__card">
+              <div class="highlights__image-container">
+                <Image
+                  src={
+                    index === 0
+                      ? dish1
+                      : index === 1
+                        ? dishChickenSalad
+                        : dishLamb
+                  }
+                  alt={item.name}
+                  class="highlights__image"
+                  width={400}
+                  height={300}
+                />
+              </div>
+              <h3 class="highlights__name">{item.name}</h3>
+              <p class="highlights__description">{item.description}</p>
+              <p class="highlights__price">${item.price}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Preview -->
+  <section class="menu-preview">
+    <div class="container menu-preview__inner">
+      <SectionHeader
+        title="Our Menu"
+        subtitle="A taste of what we have to offer"
+        centered
+      />
+      {
+        previewItems.map((category) => (
+          <div class="menu-preview__category">
+            <h3 class="menu-preview__category-title">{category.name}</h3>
+            <div class="menu-preview__items">
+              {category.items.map((item) => (
+                <MenuItemCard
+                  name={item.name}
+                  description={item.description}
+                  price={item.price}
+                  dietary={item.dietary}
+                  chefSpecial={item.chefSpecial}
+                />
+              ))}
+            </div>
+          </div>
+        ))
+      }
+      <div class="menu-preview__cta">
+        <Button href={`${basePath}menu/`} variant="primary" size="lg">
+          View full menu
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hours & Location -->
+  <HoursAndLocation />
+
+  <!-- Areas We Serve -->
+  <section class="areas">
+    <div class="container areas__inner">
+      <SectionHeader
+        title="Serving Perth & Surrounds"
+        subtitle="We're proud to serve customers from across Perth's vibrant neighbourhoods"
+        centered
+      />
+      <p class="areas__text">
+        Located in the heart of Perth, we're perfectly positioned to welcome
+        guests from across the city. Whether you're joining us for a quick
+        breakfast before work, a leisurely lunch with friends, or a special
+        dinner celebration, we're here to make your visit memorable.
+      </p>
+      <p class="areas__text">
+        Our guests come from {areasServed.join(", ")}, and beyond. We're easily
+        accessible by public transport and have parking available nearby.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTASection
+    title="Ready to Experience The Olive Branch?"
+    description="Book your table today and discover why we're one of Perth's favourite dining destinations."
+    primaryText="Book a table"
+    primaryHref={site.booking.url}
+    secondaryText="View our menu"
+    secondaryHref={`${basePath}menu/`}
+  />
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</Layout>
+
+<style>
+  .hero {
+    position: relative;
+    padding: var(--spacing-24) 0;
+    color: var(--color-bg-white);
+    overflow: hidden;
+  }
+
+  .hero__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .hero__inner {
+    max-width: var(--container-lg);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero__title {
+    font-size: var(--text-5xl);
+    margin-bottom: var(--spacing-4);
+    color: var(--color-bg-white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero__tagline {
+    font-size: var(--text-xl);
+    color: var(--color-bg-cream);
+    margin-bottom: var(--spacing-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: var(--spacing-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero :global(.hero__button--secondary) {
+    color: var(--color-bg-white) !important;
+    border-color: var(--color-bg-white) !important;
+  }
+
+  .hero :global(.hero__button--secondary:hover) {
+    background-color: var(--color-bg-white) !important;
+    color: var(--color-text-espresso) !important;
+  }
+
+  .social-proof {
+    padding: var(--spacing-16) 0;
+    background-color: var(--color-bg-white);
+  }
+
+  .social-proof__inner {
+    max-width: var(--container-lg);
+  }
+
+  .social-proof__rating {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-8);
+    justify-content: center;
+  }
+
+  .social-proof__stars {
+    display: flex;
+    gap: 4px;
+    color: var(--color-accent-terracotta);
+  }
+
+  .social-proof__rating-text {
+    font-size: var(--text-lg);
+  }
+
+  .social-proof__rating-value {
+    font-weight: 600;
+    color: var(--color-text-espresso);
+  }
+
+  .social-proof__rating-count {
+    color: var(--color-text-muted);
+  }
+
+  .social-proof__reviews {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+
+  .highlights {
+    padding: var(--spacing-16) 0;
+  }
+
+  .highlights__inner {
+    max-width: var(--container-lg);
+  }
+
+  .highlights__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+
+  .highlights__card {
+    background-color: var(--color-bg-white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-align: center;
+    border: 1px solid var(--color-border);
+    padding-bottom: var(--spacing-6);
+  }
+
+  .highlights__image-container {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    margin-bottom: var(--spacing-4);
+  }
+
+  .highlights__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+  }
+
+  .highlights__card:hover .highlights__image {
+    transform: scale(1.05);
+  }
+
+  .highlights__name {
+    font-size: var(--text-xl);
+    margin-bottom: var(--spacing-2);
+  }
+
+  .highlights__description {
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-3);
+  }
+
+  .highlights__price {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-accent-olive);
+    margin: 0;
+  }
+
+  .menu-preview {
+    padding: var(--spacing-16) 0;
+    background-color: var(--color-bg-white);
+  }
+
+  .menu-preview__inner {
+    max-width: var(--container-lg);
+  }
+
+  .menu-preview__category {
+    margin-bottom: var(--spacing-10);
+  }
+
+  .menu-preview__category-title {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--spacing-6);
+    color: var(--color-text-espresso);
+  }
+
+  .menu-preview__cta {
+    text-align: center;
+    margin-top: var(--spacing-8);
+  }
+
+  .areas {
+    padding: var(--spacing-16) 0;
+    background-color: var(--color-bg-warm-gray);
+  }
+
+  .areas__inner {
+    max-width: var(--container-lg);
+  }
+
+  .areas__text {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--spacing-4);
+  }
+
+  @media (min-width: 768px) {
+    .hero__title {
+      font-size: var(--text-6xl);
+    }
+
+    .hero__tagline {
+      font-size: var(--text-2xl);
+    }
+
+    .social-proof__reviews {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .highlights__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

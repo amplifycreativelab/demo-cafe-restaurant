@@ -1,0 +1,118 @@
+---
+import Badge from './Badge.astro';
+
+interface Props {
+  name: string;
+  description: string;
+  price: number;
+  dietary?: string[];
+  chefSpecial?: boolean;
+  featured?: boolean;
+}
+
+const { name, description, price, dietary = [], chefSpecial = false, featured = false } = Astro.props;
+
+const dietaryLabels: Record<string, string> = {
+  V: 'Vegetarian',
+  VG: 'Vegan',
+  GF: 'Gluten-free',
+};
+---
+
+<article class={`menu-item-card ${featured ? 'menu-item-card--featured' : ''}`}>
+  <div class="menu-item-card__header">
+    <div class="menu-item-card__name-row">
+      <h3 class="menu-item-card__name">{name}</h3>
+      <span class="menu-item-card__price">${price}</span>
+    </div>
+    <div class="menu-item-card__badges">
+      {chefSpecial && (
+        <Badge variant="chef">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+          </svg>
+          Chef's Special
+        </Badge>
+      )}
+      {dietary.map((tag) => (
+        <Badge variant="dietary" aria-label={dietaryLabels[tag] || tag}>
+          {tag}
+        </Badge>
+      ))}
+    </div>
+  </div>
+  <p class="menu-item-card__description">{description}</p>
+</article>
+
+<style>
+  .menu-item-card {
+    padding: var(--spacing-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .menu-item-card:last-child {
+    border-bottom: none;
+  }
+
+  .menu-item-card--featured {
+    background-color: var(--color-bg-warm-gray);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-accent-terracotta);
+    border-bottom: 1px solid var(--color-accent-terracotta);
+  }
+
+  .menu-item-card__header {
+    margin-bottom: var(--spacing-2);
+  }
+
+  .menu-item-card__name-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-2);
+  }
+
+  .menu-item-card__name {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin: 0;
+    flex: 1;
+  }
+
+  .menu-item-card__price {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-accent-olive);
+    white-space: nowrap;
+  }
+
+  .menu-item-card__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+  }
+
+  .menu-item-card__description {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: var(--leading-relaxed);
+  }
+
+  @media print {
+    .menu-item-card {
+      border-bottom: 1px solid #000;
+      padding: var(--spacing-3);
+      page-break-inside: avoid;
+    }
+
+    .menu-item-card__badges {
+      display: none;
+    }
+
+    .menu-item-card__price {
+      color: #000;
+    }
+  }
+</style>

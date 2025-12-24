@@ -1,0 +1,252 @@
+---
+import site from "../data/site.json";
+
+const { address, hoursDisplay, phone, email } = site;
+
+interface Props {
+  stacked?: boolean;
+}
+
+const { stacked = false } = Astro.props;
+
+const formatHours = (hoursString: string) => {
+  return hoursString.split("|").map((part) => part.trim());
+};
+---
+
+<section class={`hours-location ${stacked ? "hours-location--stacked" : ""}`}>
+  <div class="container hours-location__inner">
+    <div class="hours-location__grid">
+      <div class="hours-location__hours">
+        <h3 class="hours-location__heading">Opening Hours</h3>
+        <div class="hours-location__hours-list">
+          <div class="hours-location__hours-item">
+            <span class="hours-location__hours-label">Mon - Fri:</span>
+            <div class="hours-location__hours-values">
+              {
+                formatHours(hoursDisplay.weekdays).map((part) => (
+                  <div class="hours-location__hours-value">{part}</div>
+                ))
+              }
+            </div>
+          </div>
+          <div class="hours-location__hours-item">
+            <span class="hours-location__hours-label">Sat - Sun:</span>
+            <div class="hours-location__hours-values">
+              {
+                formatHours(hoursDisplay.weekend).map((part) => (
+                  <div class="hours-location__hours-value">{part}</div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hours-location__location">
+        <h3 class="hours-location__heading">Location</h3>
+        <address class="hours-location__address">
+          <div class="hours-location__address-line">{address.street}</div>
+          <div class="hours-location__address-line">
+            {address.suburb}
+            {address.state}
+            {address.postcode}
+          </div>
+          <div class="hours-location__address-line">{address.country}</div>
+        </address>
+        <div class="hours-location__contact">
+          <a
+            href={`tel:${phone.replace(/\s/g, "")}`}
+            class="hours-location__link"
+          >
+            {phone}
+          </a>
+          <a href={`mailto:${email}`} class="hours-location__link">
+            {email}
+          </a>
+        </div>
+      </div>
+
+      <div class="hours-location__map">
+        <h3 class="hours-location__heading">Find Us</h3>
+        <div
+          class="hours-location__map-placeholder"
+          aria-label="Map showing our location"
+        >
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="hours-location__map-icon"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+            ></path>
+          </svg>
+          <div class="hours-location__map-address">
+            <div class="hours-location__map-address-line">{address.street}</div>
+            <div class="hours-location__map-address-line">
+              {address.suburb}
+              {address.state}
+              {address.postcode}
+            </div>
+          </div>
+          <a
+            href={`https://maps.google.com/?q=${encodeURIComponent(address.street + " " + address.suburb + " " + address.state + " " + address.postcode)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hours-location__map-link"
+          >
+            Open in Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hours-location {
+    background-color: var(--color-bg-white);
+    padding: var(--spacing-16) 0;
+  }
+
+  .hours-location__inner {
+    max-width: var(--container-lg);
+  }
+
+  .hours-location__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-8);
+  }
+
+  .hours-location__heading {
+    font-size: var(--text-xl);
+    font-family: var(--font-serif);
+    margin-bottom: var(--spacing-4);
+    color: var(--color-text-espresso);
+  }
+
+  .hours-location__hours-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+
+  .hours-location__hours-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .hours-location__hours-label {
+    font-weight: 600;
+    color: var(--color-text-espresso);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .hours-location__hours-values {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .hours-location__hours-value {
+    font-size: var(--text-base);
+    line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .hours-location__address {
+    font-style: normal;
+    margin-bottom: var(--spacing-4);
+    color: var(--color-text-muted);
+  }
+
+  .hours-location__address-line {
+    display: block;
+    margin-bottom: var(--spacing-1);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .hours-location__address-line:last-child {
+    margin-bottom: 0;
+  }
+
+  .hours-location__contact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .hours-location__link {
+    color: var(--color-accent-olive);
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .hours-location__link:hover {
+    text-decoration: underline;
+  }
+
+  .hours-location__map-placeholder {
+    background-color: var(--color-bg-warm-gray);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: var(--spacing-4);
+  }
+
+  .hours-location__map-icon {
+    color: var(--color-accent-olive);
+  }
+
+  .hours-location__map-address {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    text-align: center;
+    margin-bottom: var(--spacing-2);
+  }
+
+  .hours-location__map-address-line {
+    color: var(--color-text-muted);
+    margin: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .hours-location__map-link {
+    color: var(--color-accent-olive);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .hours-location__map-link:hover {
+    text-decoration: underline;
+  }
+
+  @media (min-width: 768px) {
+    .hours-location:not(.hours-location--stacked) .hours-location__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hours-location--stacked .hours-location__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

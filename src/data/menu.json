@@ -1,0 +1,217 @@
+{
+  "categories": [
+    {
+      "id": "breakfast",
+      "name": "Breakfast",
+      "items": [
+        {
+          "id": "b1",
+          "name": "Avocado Smash",
+          "description": "Sourdough toast, smashed avocado, feta, cherry tomatoes, poached eggs, dukkah",
+          "price": 24,
+          "dietary": ["V"],
+          "featured": true,
+          "chefSpecial": false
+        },
+        {
+          "id": "b2",
+          "name": "Eggs Benedict",
+          "description": "English muffin, ham, poached eggs, hollandaise sauce, micro herbs",
+          "price": 22,
+          "dietary": [],
+          "featured": false,
+          "chefSpecial": false
+        },
+        {
+          "id": "b3",
+          "name": "Acai Bowl",
+          "description": "Acai blend, granola, fresh berries, banana, coconut flakes, honey",
+          "price": 18,
+          "dietary": ["V", "GF"],
+          "featured": false,
+          "chefSpecial": false
+        },
+        {
+          "id": "b4",
+          "name": "Full Brekkie",
+          "description": "Bacon, sausage, eggs, hash browns, mushrooms, tomatoes, sourdough toast",
+          "price": 28,
+          "dietary": ["GF"],
+          "featured": true,
+          "chefSpecial": false
+        },
+        {
+          "id": "b5",
+          "name": "Pancakes",
+          "description": "Buttermilk pancakes, maple syrup, butter, seasonal fruit, whipped cream",
+          "price": 20,
+          "dietary": ["V"],
+          "featured": false,
+          "chefSpecial": false
+        },
+        {
+          "id": "b6",
+          "name": "Smoked Salmon Scramble",
+          "description": "Free-range eggs, smoked salmon, cream cheese, chives, sourdough toast",
+          "price": 26,
+          "dietary": [],
+          "featured": false,
+          "chefSpecial": true
+        }
+      ]
+    },
+    {
+      "id": "lunch",
+      "name": "Lunch",
+      "items": [
+        {
+          "id": "l1",
+          "name": "Grilled Chicken Salad",
+          "description": "Grilled chicken breast, mixed greens, cherry tomatoes, avocado, nuts, lemon vinaigrette",
+          "price": 28,
+          "dietary": ["GF"],
+          "featured": true,
+          "chefSpecial": false
+        },
+        {
+          "id": "l2",
+          "name": "Fish and Chips",
+          "description": "Beer-battered snapper, hand-cut chips, mushy peas, tartare sauce",
+          "price": 32,
+          "dietary": [],
+          "featured": false,
+          "chefSpecial": false
+        },
+        {
+          "id": "l3",
+          "name": "Vegetable Burger",
+          "description": "House-made veggie patty, brioche bun, lettuce, tomato, aioli, chips",
+          "price": 24,
+          "dietary": ["V"],
+          "featured": false,
+          "chefSpecial": false
+        },
+        {
+          "id": "l4",
+          "name": "Steak Sandwich",
+          "description": "Scotch fillet, caramelised onions, rocket, tomato relish, sourdough",
+          "price": 30,
+          "dietary": [],
+          "featured": true,
+          "chefSpecial": true
+        },
+        {
+          "id": "l5",
+          "name": "Quinoa Bowl",
+          "description": "Quinoa, roasted vegetables, chickpeas, tahini dressing, seeds",
+          "price": 22,
+          "dietary": ["V", "VG", "GF"],
+          "featured": false,
+          "chefSpecial": false
+        }
+      ]
+    },
+    {
+      "id": "dinner",
+      "name": "Dinner",
+      "items": [
+        {
+          "id": "d1",
+          "name": "Grilled Lamb Rump",
+          "description": "Lamb rump, rosemary jus, roasted potatoes, seasonal vegetables",
+          "price": 42,
+          "dietary": ["GF"],
+          "featured": true,
+          "chefSpecial": false
+        },
+        {
+          "id": "d2",
+          "name": "Pan-Seared Salmon",
+          "description": "Atlantic salmon, lemon butter sauce, asparagus, new potatoes",
+          "price": 38,
+          "dietary": ["GF"],
+          "featured": false,
+          "chefSpecial": false
+        },
+        {
+          "id": "d3",
+          "name": "Mushroom Risotto",
+          "description": "Arborio rice, mixed mushrooms, parmesan, truffle oil, fresh herbs",
+          "price": 32,
+          "dietary": ["V", "GF"],
+          "featured": false,
+          "chefSpecial": true
+        },
+        {
+          "id": "d4",
+          "name": "Slow-Cooked Beef Cheeks",
+          "description": "Beef cheeks, red wine reduction, mash potato, roasted carrots",
+          "price": 36,
+          "dietary": ["GF"],
+          "featured": true,
+          "chefSpecial": false
+        },
+        {
+          "id": "d5",
+          "name": "Vegetarian Lasagne",
+          "description": "Layers of pasta, vegetables, béchamel, tomato sauce, mozzarella",
+          "price": 28,
+          "dietary": ["V"],
+          "featured": false,
+          "chefSpecial": false
+        }
+      ]
+    },
+    {
+      "id": "drinks",
+      "name": "Drinks",
+      "items": [
+        {
+          "id": "dr1",
+          "name": "House Blend Coffee",
+          "description": "Freshly roasted single-origin beans, choice of black or with milk",
+          "price": 5,
+          "dietary": [],
+          "featured": false,
+          "chefSpecial": false
+        },
+        {
+          "id": "dr2",
+          "name": "Fresh Juice",
+          "description": "Orange, apple, or seasonal blend - freshly squeezed",
+          "price": 8,
+          "dietary": ["V", "VG", "GF"],
+          "featured": false,
+          "chefSpecial": false
+        },
+        {
+          "id": "dr3",
+          "name": "Smoothie",
+          "description": "Banana, berries, yogurt, honey, almond milk blend",
+          "price": 10,
+          "dietary": ["V"],
+          "featured": false,
+          "chefSpecial": false
+        },
+        {
+          "id": "dr4",
+          "name": "House Wine",
+          "description": "Glass of red or white wine - selection changes weekly",
+          "price": 12,
+          "dietary": ["V", "VG"],
+          "featured": true,
+          "chefSpecial": false
+        },
+        {
+          "id": "dr5",
+          "name": "Craft Beer",
+          "description": "Local Western Australian craft beer on tap",
+          "price": 11,
+          "dietary": ["V", "VG"],
+          "featured": false,
+          "chefSpecial": false
+        }
+      ]
+    }
+  ]
+}

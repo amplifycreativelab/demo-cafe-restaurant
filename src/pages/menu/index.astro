@@ -1,0 +1,174 @@
+---
+import Layout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import MenuCategoryNav from '../../components/MenuCategoryNav.astro';
+import MenuItemCard from '../../components/MenuItemCard.astro';
+import site from '../../data/site.json';
+import menu from '../../data/menu.json';
+
+const categories = menu.categories;
+---
+
+<Layout
+  title={`Menu | ${site.name}`}
+  description={`Explore our full menu at ${site.name}. ${site.cuisine} dishes made with fresh, locally-sourced ingredients.`}
+>
+  <Fragment slot="header">
+    <Header />
+  </Fragment>
+
+  <section class="menu-page">
+    <div class="container menu-page__inner">
+      <SectionHeader
+        title="Our Menu"
+        subtitle="Fresh ingredients, crafted with love"
+        centered
+      />
+
+      <MenuCategoryNav categories={categories} />
+
+      <div class="menu-page__categories">
+        {categories.map((category) => (
+          <section id={category.id} class="menu-page__category">
+            <h2 class="menu-page__category-title">{category.name}</h2>
+            <div class="menu-page__items">
+              {category.items.map((item) => (
+                <MenuItemCard
+                  name={item.name}
+                  description={item.description}
+                  price={item.price}
+                  dietary={item.dietary}
+                  chefSpecial={item.chefSpecial}
+                  featured={item.featured}
+                />
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <div class="menu-page__cta">
+        <a
+          href={site.booking.url}
+          class="btn btn--primary btn--lg"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Book a table
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</Layout>
+
+<style>
+  .menu-page {
+    padding: var(--spacing-16) 0;
+  }
+
+  .menu-page__inner {
+    max-width: var(--container-lg);
+  }
+
+  .menu-page__categories {
+    margin-top: var(--spacing-8);
+  }
+
+  .menu-page__category {
+    margin-bottom: var(--spacing-16);
+    scroll-margin-top: 100px;
+  }
+
+  .menu-page__category-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--spacing-6);
+    color: var(--color-text-espresso);
+    padding-bottom: var(--spacing-3);
+    border-bottom: 2px solid var(--color-accent-olive);
+  }
+
+  .menu-page__items {
+    background-color: var(--color-bg-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .menu-page__cta {
+    text-align: center;
+    margin-top: var(--spacing-12);
+  }
+
+  /* Print styles */
+  @media print {
+    .menu-page {
+      padding: var(--spacing-8) 0;
+    }
+
+    .menu-page__inner {
+      max-width: none;
+    }
+
+    .menu-page__category {
+      margin-bottom: var(--spacing-8);
+      page-break-inside: avoid;
+    }
+
+    .menu-page__category-title {
+      color: #000;
+      border-bottom: 2px solid #000;
+    }
+
+    .menu-page__cta {
+      display: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .menu-page__category-title {
+      font-size: var(--text-4xl);
+    }
+  }
+</style>
+
+<style is:global>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    gap: var(--spacing-2);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+
+  .btn--primary {
+    background-color: var(--color-accent-olive);
+    color: var(--color-bg-cream);
+  }
+
+  .btn--primary:hover {
+    background-color: var(--color-accent-olive-dark);
+    transform: translateY(-1px);
+  }
+
+  .btn--lg {
+    padding: var(--spacing-4) var(--spacing-6);
+    font-size: var(--text-lg);
+  }
+</style>

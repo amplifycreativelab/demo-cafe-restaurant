@@ -1,0 +1,100 @@
+---
+interface Props {
+  name: string;
+  text: string;
+  rating: number;
+  date?: string;
+  verified?: boolean;
+}
+
+const { name, text, rating, date, verified = false } = Astro.props;
+
+const stars = Array.from({ length: 5 }, (_, i) => i < rating);
+---
+
+<article class="testimonial-card">
+  <div class="testimonial-card__rating">
+    {stars.map((filled) => (
+      <svg
+        class={`testimonial-card__star ${filled ? 'testimonial-card__star--filled' : ''}`}
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      </svg>
+    ))}
+  </div>
+  <blockquote class="testimonial-card__text">
+    "{text}"
+  </blockquote>
+  <footer class="testimonial-card__footer">
+    <cite class="testimonial-card__author">{name}</cite>
+    {date && <span class="testimonial-card__date">{date}</span>}
+    {verified && (
+      <span class="testimonial-card__verified" aria-label="Verified review">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+        </svg>
+      </span>
+    )}
+  </footer>
+</article>
+
+<style>
+  .testimonial-card {
+    background-color: var(--color-bg-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-6);
+    border: 1px solid var(--color-border);
+  }
+
+  .testimonial-card__rating {
+    display: flex;
+    gap: 2px;
+    margin-bottom: var(--spacing-3);
+    color: var(--color-accent-terracotta);
+  }
+
+  .testimonial-card__star--filled {
+    color: var(--color-accent-terracotta);
+  }
+
+  .testimonial-card__star:not(.testimonial-card__star--filled) {
+    color: var(--color-border-dark);
+  }
+
+  .testimonial-card__text {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-espresso);
+    margin: 0 0 var(--spacing-4);
+    font-style: italic;
+  }
+
+  .testimonial-card__footer {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    flex-wrap: wrap;
+  }
+
+  .testimonial-card__author {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--color-text-espresso);
+  }
+
+  .testimonial-card__date {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .testimonial-card__verified {
+    display: flex;
+    align-items: center;
+    color: var(--color-accent-olive);
+  }
+</style>

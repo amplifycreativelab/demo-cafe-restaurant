@@ -1,0 +1,219 @@
+---
+import site from "../data/site.json";
+
+const basePath = import.meta.env.BASE_URL;
+
+const navItems = [
+  { label: "Home", href: basePath },
+  { label: "Menu", href: `${basePath}menu/` },
+  { label: "Book", href: `${basePath}book/` },
+  { label: "Gallery", href: `${basePath}gallery/` },
+  { label: "About", href: `${basePath}about/` },
+  { label: "Contact", href: `${basePath}contact/` },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="header">
+  <div class="container header-inner">
+    <a href={basePath} class="logo" aria-label="The Olive Branch - Home">
+      <span class="logo-text">{site.name}</span>
+    </a>
+
+    <button
+      class="mobile-menu-toggle"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+    >
+      <span class="hamburger"></span>
+      <span class="hamburger"></span>
+      <span class="hamburger"></span>
+    </button>
+
+    <nav id="primary-nav" class="nav">
+      <ul class="nav-list">
+        {
+          navItems.map((item) => (
+            <li class="nav-item">
+              <a
+                href={item.href}
+                class={`nav-link ${currentPath === item.href ? "nav-link--active" : ""}`}
+                aria-current={currentPath === item.href ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li class="nav-item nav-item--cta">
+          <a
+            href={site.booking.url}
+            class="btn btn--primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Book a table
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    background-color: var(--color-bg-cream);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--spacing-4);
+    padding-bottom: var(--spacing-4);
+  }
+
+  .logo {
+    text-decoration: none;
+  }
+
+  .logo-text {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: var(--color-text-espresso);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-2);
+  }
+
+  .hamburger {
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text-espresso);
+    transition: transform var(--transition-fast);
+  }
+
+  .nav {
+    display: block;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-6);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--color-accent-olive);
+  }
+
+  .nav-link--active {
+    color: var(--color-accent-olive);
+  }
+
+  .nav-link--active::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-accent-olive);
+  }
+
+  .nav-item--cta {
+    margin-left: var(--spacing-2);
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-toggle {
+      display: flex;
+    }
+
+    .nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: var(--color-bg-cream);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--spacing-4);
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        transform var(--transition-base),
+        opacity var(--transition-base),
+        visibility var(--transition-base);
+      z-index: -1;
+    }
+
+    .nav[aria-expanded="true"] {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--spacing-4);
+    }
+
+    .nav-link {
+      font-size: var(--text-lg);
+      padding: var(--spacing-3);
+      display: block;
+    }
+
+    .nav-item--cta {
+      margin-left: 0;
+    }
+
+    .nav-item--cta .btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector(".mobile-menu-toggle");
+  const nav = document.getElementById("primary-nav");
+
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", (!isExpanded).toString());
+      nav.setAttribute("aria-expanded", (!isExpanded).toString());
+    });
+  }
+</script>

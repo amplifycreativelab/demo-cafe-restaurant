@@ -1,0 +1,275 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Button from '../components/Button.astro';
+import site from '../data/site.json';
+
+const basePath = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="Services | The Olive Branch"
+  description="Explore our services at The Olive Branch in Perth - catering, functions, and group bookings."
+>
+  <Fragment slot="header">
+    <Header />
+  </Fragment>
+
+  <section class="services-page">
+    <div class="container services-page__inner">
+      <SectionHeader
+        title="Our Services"
+        subtitle="More than just great food – we're here to make your events special"
+        centered
+      />
+
+      <div class="services-page__intro">
+        <p class="services-page__text">
+          At The Olive Branch, we love being part of your special moments. Whether you're planning an intimate dinner, a corporate function, or a large celebration, we're here to help make it memorable.
+        </p>
+      </div>
+
+      <div class="services-page__grid">
+        <div class="services-page__card">
+          <div class="services-page__card-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.89-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h7v2zm0-4H7V7h7v2z" />
+            </svg>
+          </div>
+          <h2 class="services-page__card-title">Private Functions</h2>
+          <p class="services-page__card-text">
+            Host your next private event with us. Perfect for birthdays, anniversaries, and intimate gatherings. We can accommodate groups of up to 30 guests in our private dining area.
+          </p>
+          <ul class="services-page__card-list">
+            <li>Private dining space available</li>
+            <li>Customised menus for your event</li>
+            <li>Dedicated staff for your function</li>
+            <li>Flexible timing to suit your needs</li>
+          </ul>
+        </div>
+
+        <div class="services-page__card">
+          <div class="services-page__card-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79.36l2.16-2.16c.71.37 1.39.92 2.94 1.63 4.28l-2.16 2.16c.58.14 1.17.24 1.79.24h2c4.08 0 7.44-3.05 7.93-7zM12 4c4.08 0 7.44 3.05 7.93 7h-2c-.62 0-1.21-.08-1.79-.23l-2.16 2.16c.71-1.39.92-2.94 1.63-4.28l2.16-2.16C17.21 4.08 16.62 4 16 4h-2c-4.08 0-7.44 3.05-7.93 7z" />
+            </svg>
+          </div>
+          <h2 class="services-page__card-title">Corporate Catering</h2>
+          <p class="services-page__card-text">
+            From boardroom lunches to office celebrations, our corporate catering services deliver quality and convenience. We understand the importance of professional service and delicious food for your business events.
+          </p>
+          <ul class="services-page__card-list">
+            <li>Boardroom lunch packages</li>
+            <li>Office party catering</li>
+            <li>Conference breaks and refreshments</li>
+            <li>Dietary requirements accommodated</li>
+          </ul>
+        </div>
+
+        <div class="services-page__card">
+          <div class="services-page__card-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M16 11c1.66 0 2.99-1.34 2.99-3V5c0-1.66-1.34-3-3-3H9c-1.66 0-3 1.34-3 3v3c0 1.66 1.34 3 3 3h6c1.66 0 3-1.34 3-3v-3c0-1.66-1.34-3-3-3zM9 12l3 4 3-4H9zm10.5-2l-1.41-1.41L16 10.67l-2.09 2.09L12.5 11.34l1.41-1.41L16 13.33l2.09-2.09L19.5 10zM19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 9l-3-3v2h5l-2-2-2 2v-2h-3l3 3z" />
+            </svg>
+          </div>
+          <h2 class="services-page__card-title">Celebration Catering</h2>
+          <p class="services-page__card-text">
+            Make your special occasions truly memorable with our celebration catering. Weddings, engagement parties, milestone birthdays – we bring the same care and quality to your event as we do to our daily service.
+          </p>
+          <ul class="services-page__card-list">
+            <li>Wedding catering packages</li>
+            <li>Birthday party menus</li>
+            <li>Canapé and finger food options</li>
+            <li>Full-service or drop-off options</li>
+          </ul>
+        </div>
+
+        <div class="services-page__card">
+          <div class="services-page__card-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 9h-2v2h2v-2zm4 0h-2v2h2v-2zm-4 0H8v2h2v-2zm4-4H8v2h2V8zm-4 0H8v2h2V8zm4-4H8v2h2V4zm-4 0H8v2h2V4zm4-4H8v2h2V0z" />
+            </svg>
+          </div>
+          <h2 class="services-page__card-title">Group Bookings</h2>
+          <p class="services-page__card-text">
+            Planning a group outing? We love welcoming larger parties and can accommodate groups with advance notice. Let us help you plan the perfect menu for your group.
+          </p>
+          <ul class="services-page__card-list">
+            <li>Groups of 8+ require advance booking</li>
+            <li>Set menus available for large groups</li>
+            <li>Private room hire available</li>
+            <li>Flexible payment options</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="services-page__cta">
+        <h2 class="services-page__cta-title">Ready to Plan Your Event?</h2>
+        <p class="services-page__cta-text">
+          Contact us to discuss your requirements and we'll create a customised proposal for your event.
+        </p>
+        <div class="services-page__cta-buttons">
+          <Button href={`${basePath}contact/`} variant="primary" size="lg">
+            Contact Us
+          </Button>
+          <a
+            href={`tel:${site.phone.replace(/\s/g, '')}`}
+            class="services-page__phone"
+          >
+            {site.phone}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</Layout>
+
+<style>
+  .services-page {
+    padding: var(--spacing-16) 0;
+  }
+
+  .services-page__inner {
+    max-width: var(--container-lg);
+  }
+
+  .services-page__intro {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-12);
+    text-align: center;
+  }
+
+  .services-page__text {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .services-page__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+    margin-bottom: var(--spacing-16);
+  }
+
+  .services-page__card {
+    background-color: var(--color-bg-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-8);
+    border: 1px solid var(--color-border);
+  }
+
+  .services-page__card-icon {
+    width: 80px;
+    height: 80px;
+    background-color: var(--color-bg-warm-gray);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-6);
+    color: var(--color-accent-olive);
+  }
+
+  .services-page__card-title {
+    font-size: var(--text-2xl);
+    text-align: center;
+    margin-bottom: var(--spacing-4);
+    color: var(--color-text-espresso);
+  }
+
+  .services-page__card-text {
+    text-align: center;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-6);
+    line-height: var(--leading-relaxed);
+  }
+
+  .services-page__card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  .services-page__card-list li {
+    padding: var(--spacing-2) 0;
+    color: var(--color-text-muted);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .services-page__card-list li:last-child {
+    border-bottom: none;
+  }
+
+  .services-page__cta {
+    background-color: var(--color-bg-warm-gray);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-10);
+    text-align: center;
+  }
+
+  .services-page__cta-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--spacing-4);
+    color: var(--color-text-espresso);
+  }
+
+  .services-page__cta-text {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-6);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .services-page__cta-buttons {
+    display: flex;
+    gap: var(--spacing-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .services-page__phone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-2);
+    background-color: var(--color-text-espresso);
+    color: var(--color-bg-cream);
+    padding: var(--spacing-4) var(--spacing-8);
+    font-size: var(--text-lg);
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .services-page__phone:hover {
+    background-color: var(--color-accent-olive);
+  }
+
+  .services-page__phone:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+
+  @media (min-width: 640px) {
+    .services-page__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .services-page__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

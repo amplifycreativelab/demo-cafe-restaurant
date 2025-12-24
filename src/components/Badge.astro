@@ -1,0 +1,45 @@
+---
+interface Props {
+  variant?: 'default' | 'dietary' | 'chef';
+  class?: string;
+}
+
+const { variant = 'default', class: className = '' } = Astro.props;
+
+const variantClasses = {
+  default: 'badge--default',
+  dietary: 'badge--dietary',
+  chef: 'badge--chef',
+};
+---
+
+<span class={`badge ${variantClasses[variant]} ${className}`}>
+  <slot />
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--spacing-1) var(--spacing-2);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    border-radius: var(--radius-full);
+    line-height: 1;
+  }
+
+  .badge--default {
+    background-color: var(--color-bg-warm-gray);
+    color: var(--color-text-muted);
+  }
+
+  .badge--dietary {
+    background-color: var(--color-accent-olive-light);
+    color: var(--color-text-espresso);
+  }
+
+  .badge--chef {
+    background-color: var(--color-accent-terracotta);
+    color: var(--color-bg-cream);
+  }
+</style>

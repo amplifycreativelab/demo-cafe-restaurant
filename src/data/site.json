@@ -1,0 +1,50 @@
+{
+  "name": "The Olive Branch",
+  "tagline": "Seasonal flavours, warm hospitality",
+  "cuisine": "Modern Australian with Mediterranean influences",
+  "address": {
+    "street": "123 Hay Street",
+    "suburb": "Perth",
+    "state": "WA",
+    "postcode": "6000",
+    "country": "Australia"
+  },
+  "phone": "+61 8 9234 5678",
+  "email": "hello@theolivebranch.com.au",
+  "hours": {
+    "monday": { "open": "07:00", "close": "15:00" },
+    "tuesday": { "open": "07:00", "close": "15:00" },
+    "wednesday": { "open": "07:00", "close": "15:00" },
+    "thursday": { "open": "07:00", "close": "21:00" },
+    "friday": { "open": "07:00", "close": "22:00" },
+    "saturday": { "open": "08:00", "close": "22:00" },
+    "sunday": { "open": "08:00", "close": "16:00" }
+  },
+  "hoursDisplay": {
+    "weekdays": "Mon-Wed: 7am-3pm | Thu-Fri: 7am-10pm",
+    "weekend": "Sat: 8am-10pm | Sun: 8am-4pm"
+  },
+  "social": {
+    "instagram": "https://instagram.com/theolivebranch",
+    "facebook": "https://facebook.com/theolivebranch"
+  },
+  "booking": {
+    "type": "external",
+    "url": "https://resy.com/the-olive-branch"
+  },
+  "rating": {
+    "value": 4.7,
+    "count": 328,
+    "platform": "Google"
+  },
+  "areasServed": [
+    "Perth CBD",
+    "Subiaco",
+    "Leederville",
+    "Mount Lawley",
+    "Victoria Park",
+    "East Perth",
+    "West Perth",
+    "Northbridge"
+  ]
+}

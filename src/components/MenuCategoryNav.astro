@@ -1,0 +1,125 @@
+---
+interface Props {
+  categories: Array<{ id: string; name: string }>;
+}
+
+const { categories } = Astro.props;
+---
+
+<nav class="menu-category-nav" aria-label="Menu categories">
+  <ul class="menu-category-nav__list">
+    {categories.map((category) => (
+      <li class="menu-category-nav__item">
+        <a
+          href={`#${category.id}`}
+          class="menu-category-nav__link"
+          data-category={category.id}
+        >
+          {category.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .menu-category-nav {
+    position: sticky;
+    top: 73px;
+    z-index: calc(var(--z-sticky) - 1);
+    background-color: var(--color-bg-cream);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-3) 0;
+    margin-bottom: var(--spacing-8);
+  }
+
+  .menu-category-nav__list {
+    display: flex;
+    gap: var(--spacing-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .menu-category-nav__item {
+    flex-shrink: 0;
+  }
+
+  .menu-category-nav__link {
+    display: inline-block;
+    padding: var(--spacing-2) var(--spacing-4);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+  }
+
+  .menu-category-nav__link:hover {
+    color: var(--color-accent-olive);
+    background-color: var(--color-bg-warm-gray);
+  }
+
+  .menu-category-nav__link[aria-current='true'],
+  .menu-category-nav__link.active {
+    background-color: var(--color-accent-olive);
+    color: var(--color-bg-cream);
+  }
+
+  /* Hide scrollbar */
+  .menu-category-nav__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .menu-category-nav__list {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  @media print {
+    .menu-category-nav {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Highlight active category on scroll
+  const links = document.querySelectorAll('.menu-category-nav__link');
+  const sections = Array.from(links).map((link) => {
+    const href = link.getAttribute('href');
+    return href ? document.querySelector(href) : null;
+  }).filter((section): section is HTMLElement => section);
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          links.forEach((link) => {
+            const linkHref = link.getAttribute('href');
+            if (linkHref === `#${id}`) {
+              link.setAttribute('aria-current', 'true');
+              link.classList.add('active');
+            } else {
+              link.removeAttribute('aria-current');
+              link.classList.remove('active');
+            }
+          });
+        }
+      });
+    },
+    {
+      rootMargin: '-20% 0px -80% 0px',
+      threshold: 0,
+    }
+  );
+
+  sections.forEach((section) => {
+    if (section) observer.observe(section);
+  });
+</script>

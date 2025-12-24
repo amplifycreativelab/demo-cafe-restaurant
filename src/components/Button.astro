@@ -1,0 +1,111 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary';
+  size?: 'sm' | 'md' | 'lg';
+  fullWidth?: boolean;
+  external?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  fullWidth = false,
+  external = false,
+  class: className = '',
+} = Astro.props;
+
+const baseClass = 'btn';
+const variantClass = `btn--${variant}`;
+const sizeClass = `btn--${size}`;
+const widthClass = fullWidth ? 'btn--full' : '';
+const externalAttrs = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+---
+
+{href ? (
+  <a
+    href={href}
+    class={`${baseClass} ${variantClass} ${sizeClass} ${widthClass} ${className}`}
+    {...externalAttrs}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    class={`${baseClass} ${variantClass} ${sizeClass} ${widthClass} ${className}`}
+    type="button"
+  >
+    <slot />
+  </button>
+)}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    gap: var(--spacing-2);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+
+  /* Sizes */
+  .btn--sm {
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: var(--text-sm);
+  }
+
+  .btn--md {
+    padding: var(--spacing-3) var(--spacing-5);
+    font-size: var(--text-base);
+  }
+
+  .btn--lg {
+    padding: var(--spacing-4) var(--spacing-6);
+    font-size: var(--text-lg);
+  }
+
+  /* Primary variant */
+  .btn--primary {
+    background-color: var(--color-accent-olive);
+    color: var(--color-bg-cream);
+  }
+
+  .btn--primary:hover {
+    background-color: var(--color-accent-olive-dark);
+    transform: translateY(-1px);
+  }
+
+  .btn--primary:active {
+    transform: translateY(0);
+  }
+
+  /* Secondary variant */
+  .btn--secondary {
+    background-color: transparent;
+    color: var(--color-accent-olive);
+    border: 2px solid var(--color-accent-olive);
+  }
+
+  .btn--secondary:hover {
+    background-color: var(--color-accent-olive);
+    color: var(--color-bg-cream);
+  }
+
+  /* Full width */
+  .btn--full {
+    width: 100%;
+  }
+</style>
