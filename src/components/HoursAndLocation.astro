@@ -1,7 +1,7 @@
 ---
 import site from "../data/site.json";
 
-const { address, hoursDisplay, phone, email } = site;
+const { address, hoursDisplay } = site;
 
 interface Props {
   stacked?: boolean;
@@ -12,6 +12,10 @@ const { stacked = false } = Astro.props;
 const formatHours = (hoursString: string) => {
   return hoursString.split("|").map((part) => part.trim());
 };
+
+const addressLine2 = [address.suburb, address.state, address.postcode]
+  .filter(Boolean)
+  .join(" ");
 ---
 
 <section class={`hours-location ${stacked ? "hours-location--stacked" : ""}`}>
@@ -47,22 +51,20 @@ const formatHours = (hoursString: string) => {
         <h3 class="hours-location__heading">Location</h3>
         <address class="hours-location__address">
           <div class="hours-location__address-line">{address.street}</div>
-          <div class="hours-location__address-line">
-            {address.suburb}
-            {address.state}
-            {address.postcode}
-          </div>
+          <div class="hours-location__address-line">{addressLine2}</div>
           <div class="hours-location__address-line">{address.country}</div>
         </address>
         <div class="hours-location__contact">
+          <div class="hours-location__note">
+            Concept demo — no phone or email.
+          </div>
           <a
-            href={`tel:${phone.replace(/\s/g, "")}`}
+            href="https://amplifycreativelab.com"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
             class="hours-location__link"
           >
-            {phone}
-          </a>
-          <a href={`mailto:${email}`} class="hours-location__link">
-            {email}
+            amplifycreativelab.com
           </a>
         </div>
       </div>
@@ -88,19 +90,12 @@ const formatHours = (hoursString: string) => {
           <div class="hours-location__map-address">
             <div class="hours-location__map-address-line">{address.street}</div>
             <div class="hours-location__map-address-line">
-              {address.suburb}
-              {address.state}
-              {address.postcode}
+              {addressLine2}
             </div>
           </div>
-          <a
-            href={`https://maps.google.com/?q=${encodeURIComponent(address.street + " " + address.suburb + " " + address.state + " " + address.postcode)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hours-location__map-link"
-          >
-            Open in Google Maps
-          </a>
+          <div class="hours-location__map-note">
+            Map links are disabled in concept demos.
+          </div>
         </div>
       </div>
     </div>
@@ -188,6 +183,11 @@ const formatHours = (hoursString: string) => {
     gap: var(--spacing-2);
   }
 
+  .hours-location__note {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
   .hours-location__link {
     color: var(--color-accent-olive);
     text-decoration: none;
@@ -238,6 +238,11 @@ const formatHours = (hoursString: string) => {
 
   .hours-location__map-link:hover {
     text-decoration: underline;
+  }
+
+  .hours-location__map-note {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
   }
 
   @media (min-width: 768px) {

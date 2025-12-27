@@ -3,6 +3,9 @@ import site from '../data/site.json';
 
 const currentYear = new Date().getFullYear();
 const basePath = import.meta.env.BASE_URL;
+const addressLine2 = [site.address.suburb, site.address.state, site.address.postcode]
+  .filter(Boolean)
+  .join(" ");
 ---
 
 <footer class="footer">
@@ -17,17 +20,20 @@ const basePath = import.meta.env.BASE_URL;
         <h3 class="footer-heading">Contact</h3>
         <address class="footer-address">
           <p>{site.address.street}</p>
-          <p>{site.address.suburb} {site.address.state} {site.address.postcode}</p>
+          <p>{addressLine2}</p>
           <p>{site.address.country}</p>
         </address>
         <p class="footer-contact">
-          <a href={`tel:${site.phone.replace(/\s/g, '')}`} class="footer-link">
-            {site.phone}
-          </a>
+          <span class="footer-note">Non-indexed concept demo.</span>
         </p>
         <p class="footer-contact">
-          <a href={`mailto:${site.email}`} class="footer-link">
-            {site.email}
+          <a
+            href="https://amplifycreativelab.com"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+            class="footer-link"
+          >
+            amplifycreativelab.com
           </a>
         </p>
       </div>
@@ -141,6 +147,10 @@ const basePath = import.meta.env.BASE_URL;
 
   .footer-contact {
     margin: 0 0 var(--spacing-2);
+  }
+
+  .footer-note {
+    color: var(--color-text-light);
   }
 
   .footer-link {

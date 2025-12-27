@@ -175,3 +175,4 @@ If using CSS modules + tokens:
 - [ ] "Open now / Closed" indicator based on hours.
 - [ ] Sticky mobile booking CTA button.
 - [ ] FAQ accordion (only if it supports conversion; keep JS minimal).
+

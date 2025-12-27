@@ -3,14 +3,14 @@
   "tagline": "Seasonal flavours, warm hospitality",
   "cuisine": "Modern Australian with Mediterranean influences",
   "address": {
-    "street": "123 Hay Street",
-    "suburb": "Perth",
-    "state": "WA",
-    "postcode": "6000",
-    "country": "Australia"
+    "street": "123 Example Street",
+    "suburb": "Central District",
+    "state": "EX",
+    "postcode": "0000",
+    "country": "Fictional"
   },
-  "phone": "+61 8 9234 5678",
-  "email": "hello@theolivebranch.com.au",
+  "phone": "",
+  "email": "",
   "hours": {
     "monday": { "open": "07:00", "close": "15:00" },
     "tuesday": { "open": "07:00", "close": "15:00" },
@@ -38,13 +38,11 @@
     "platform": "Google"
   },
   "areasServed": [
-    "Perth CBD",
-    "Subiaco",
-    "Leederville",
-    "Mount Lawley",
-    "Victoria Park",
-    "East Perth",
-    "West Perth",
-    "Northbridge"
+    "Central District",
+    "Riverside",
+    "Old Quarter",
+    "East Market",
+    "Harbor Walk",
+    "Studio Row"
   ]
 }

@@ -205,7 +205,7 @@
         {
           "id": "dr5",
           "name": "Craft Beer",
-          "description": "Local Western Australian craft beer on tap",
+          "description": "Rotating craft beer on tap",
           "price": 11,
           "dietary": ["V", "VG"],
           "featured": false,

@@ -34,7 +34,7 @@ const basePath = import.meta.env.BASE_URL;
 
 <Layout
   title={`${site.name} | ${site.tagline}`}
-  description={`Experience ${site.cuisine} in Perth. ${site.tagline}. Book a table or view our menu today.`}
+  description={`Experience ${site.cuisine}. ${site.tagline}. Explore the menu and booking flow (concept demo).`}
 >
   <Fragment slot="header">
     <Header />
@@ -197,15 +197,15 @@ const basePath = import.meta.env.BASE_URL;
   <section class="areas">
     <div class="container areas__inner">
       <SectionHeader
-        title="Serving Perth & Surrounds"
-        subtitle="We're proud to serve customers from across Perth's vibrant neighbourhoods"
+        title="Example Coverage"
+        subtitle="Fictional neighbourhood list for layout (concept demo)"
         centered
       />
       <p class="areas__text">
-        Located in the heart of Perth, we're perfectly positioned to welcome
-        guests from across the city. Whether you're joining us for a quick
-        breakfast before work, a leisurely lunch with friends, or a special
-        dinner celebration, we're here to make your visit memorable.
+        Located in the heart of a fictional city, we're perfectly positioned to
+        welcome guests from across the area. Whether you're joining us for a
+        quick breakfast, a leisurely lunch, or a special dinner celebration,
+        we're here to make your visit memorable.
       </p>
       <p class="areas__text">
         Our guests come from {areasServed.join(", ")}, and beyond. We're easily
@@ -217,7 +217,7 @@ const basePath = import.meta.env.BASE_URL;
   <!-- CTA Section -->
   <CTASection
     title="Ready to Experience The Olive Branch?"
-    description="Book your table today and discover why we're one of Perth's favourite dining destinations."
+    description="Book your table today and explore the full flow in this non-indexed concept demo."
     primaryText="Book a table"
     primaryHref={site.booking.url}
     secondaryText="View our menu"

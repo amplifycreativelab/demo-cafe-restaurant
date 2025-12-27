@@ -9,7 +9,7 @@ import reviews from '../../data/reviews.json';
 
 <Layout
   title="Book a Table | The Olive Branch"
-  description="Reserve your table at The Olive Branch in Perth. Experience our ${site.cuisine} in a warm, welcoming atmosphere."
+  description={`Reserve your table at The Olive Branch (concept demo). Experience our ${site.cuisine} in a warm, welcoming atmosphere.`}
 >
   <Fragment slot="header">
     <Header />
@@ -20,7 +20,7 @@ import reviews from '../../data/reviews.json';
       <div class="booking-page__content">
         <h1 class="booking-page__title">Book a Table</h1>
         <p class="booking-page__description">
-          We'd love to host you at The Olive Branch. Reserve your table today and enjoy our ${site.cuisine} in the heart of Perth.
+          We'd love to host you at The Olive Branch. Reserve your table today and enjoy our {site.cuisine} in the heart of the city.
         </p>
 
         <div class="booking-page__card">
@@ -57,7 +57,7 @@ import reviews from '../../data/reviews.json';
           <h3 class="booking-page__info-title">Booking Information</h3>
           <ul class="booking-page__info-list">
             <li>Walk-ins welcome subject to availability</li>
-            <li>For groups of 8 or more, please call us directly</li>
+            <li>For groups of 8 or more, please use the contact form</li>
             <li>Special dietary requirements can be noted during booking</li>
             <li>Cancellations: Please give at least 24 hours notice</li>
           </ul>
@@ -81,13 +81,15 @@ import reviews from '../../data/reviews.json';
         <div class="booking-page__contact">
           <h3 class="booking-page__sidebar-title">Contact Us</h3>
           <p class="booking-page__contact-text">
-            Prefer to book by phone? Give us a call and we'll help you find the perfect table.
+            This is a concept demo. For real bookings, visit:
           </p>
           <a
-            href={`tel:${site.phone.replace(/\s/g, '')}`}
+            href="https://amplifycreativelab.com"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
             class="booking-page__phone"
           >
-            {site.phone}
+            amplifycreativelab.com
           </a>
         </div>
       </aside>

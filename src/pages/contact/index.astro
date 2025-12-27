@@ -13,7 +13,7 @@ const basePath = import.meta.env.BASE_URL;
 
 <Layout
   title="Contact Us | The Olive Branch"
-  description="Get in touch with The Olive Branch in Perth. Find our location, hours, and contact information."
+  description="Get in touch with The Olive Branch (concept demo). Find our hours and demo-only contact information."
 >
   <Fragment slot="header">
     <Header />
@@ -39,8 +39,7 @@ const basePath = import.meta.env.BASE_URL;
                 </div>
                 <div class="contact-page__address-line">
                   {site.address.suburb}
-                  {site.address.state}
-                  {site.address.postcode}
+                  {site.address.state} {site.address.postcode}
                 </div>
                 <div class="contact-page__address-line">
                   {site.address.country}
@@ -49,23 +48,19 @@ const basePath = import.meta.env.BASE_URL;
             </div>
 
             <div class="contact-page__detail">
-              <h3 class="contact-page__detail-label">Phone</h3>
-              <a
-                href={`tel:${site.phone.replace(/\s/g, "")}`}
-                class="contact-page__detail-value contact-page__link"
-              >
-                {site.phone}
-              </a>
-            </div>
-
-            <div class="contact-page__detail">
-              <h3 class="contact-page__detail-label">Email</h3>
-              <a
-                href={`mailto:${site.email}`}
-                class="contact-page__detail-value contact-page__link"
-              >
-                {site.email}
-              </a>
+              <h3 class="contact-page__detail-label">Note</h3>
+              <div class="contact-page__detail-value">
+                Non-indexed concept demo. Visit{" "}
+                <a
+                  href="https://amplifycreativelab.com"
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  class="contact-page__link"
+                >
+                  amplifycreativelab.com
+                </a>
+                .
+              </div>
             </div>
           </div>
         </div>
@@ -84,7 +79,7 @@ const basePath = import.meta.env.BASE_URL;
               type="email"
               name="email"
               label="Email"
-              placeholder="your@email.com"
+              placeholder="you@example.com"
               required
             />
 

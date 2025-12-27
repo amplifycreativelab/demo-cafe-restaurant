@@ -11,7 +11,7 @@ const basePath = import.meta.env.BASE_URL;
 
 <Layout
   title="Services | The Olive Branch"
-  description="Explore our services at The Olive Branch in Perth - catering, functions, and group bookings."
+  description="Explore our services at The Olive Branch (concept demo) - catering, functions, and group bookings."
 >
   <Fragment slot="header">
     <Header />
@@ -115,10 +115,12 @@ const basePath = import.meta.env.BASE_URL;
             Contact Us
           </Button>
           <a
-            href={`tel:${site.phone.replace(/\s/g, '')}`}
+            href="https://amplifycreativelab.com"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
             class="services-page__phone"
           >
-            {site.phone}
+            amplifycreativelab.com
           </a>
         </div>
       </div>

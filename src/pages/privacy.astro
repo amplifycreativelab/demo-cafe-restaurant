@@ -92,22 +92,15 @@ const lastUpdated = new Date().toLocaleDateString('en-AU', {
         </p>
         <div class="privacy-page__contact">
           <p class="privacy-page__contact-item">
-            <strong>Email:</strong>{' '}
-            <a href={`mailto:${site.email}`} class="privacy-page__link">
-              {site.email}
-            </a>
-          </p>
-          <p class="privacy-page__contact-item">
-            <strong>Phone:</strong>{' '}
-            <a href={`tel:${site.phone.replace(/\s/g, '')}`} class="privacy-page__link">
-              {site.phone}
-            </a>
-          </p>
-          <p class="privacy-page__contact-item">
-            <strong>Address:</strong>{' '}
-            <address class="privacy-page__address">
-              {site.address.street}, {site.address.suburb} {site.address.state} {site.address.postcode}
-            </address>
+            <strong>Note:</strong>{' '}
+            This is a non-indexed concept demo. Visit{' '}
+            <a
+              href="https://amplifycreativelab.com"
+              class="privacy-page__link"
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              >amplifycreativelab.com</a
+            >.
           </p>
         </div>
       </div>
