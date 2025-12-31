@@ -5,12 +5,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site:
-    process.env.SITE_URL ||
-    (process.env.GITHUB_REPOSITORY_OWNER
-      ? `https://${process.env.GITHUB_REPOSITORY_OWNER}.github.io`
-      : 'http://localhost:4321'),
-  base: process.env.BASE_PATH || '/',
+  site: 'https://amplifycreativelab.github.io',
+  base: '/demo-cafe-restaurant',
   compressHTML: true,
   trailingSlash: 'always',
 
